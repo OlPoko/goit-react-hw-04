@@ -7,7 +7,7 @@ const ImageCard = ({ image, onClick }) => {
       <img
         src={image.urls.small}
         alt={image.alt_description || "Image description"}
-        onClick={() => onClick(image)} // Викликаємо onClick з image як аргумент
+        onClick={() => onClick(image)}
         className={style.image}
       />
     </div>
