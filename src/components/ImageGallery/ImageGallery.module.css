@@ -1,4 +1,5 @@
 .gallery {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -6,7 +7,7 @@
   margin-top: 40px;
 }
 
-.gallery > div {
+.gallery > li {
   flex: 1 1 250px;
   max-width: calc(33.33% - 16px);
 }

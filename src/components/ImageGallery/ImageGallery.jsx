@@ -1,13 +1,15 @@
 import style from "../ImageGallery/ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <div className={style.gallery}>
+    <ul className={style.gallery}>
       {images.map((image) => (
-        <ImageCard key={image.id} image={image} />
+        <li key={image.id} className={style.galleryItem}>
+          <ImageCard image={image} onClick={onImageClick} />{" "}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

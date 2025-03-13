@@ -1,25 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./ImageCard.module.css";
-import ImageModal from "../ImageModal/ImageModal";
 
-const ImageCard = ({ image }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
+const ImageCard = ({ image, onClick }) => {
   return (
     <div className={style.card}>
       <img
         src={image.urls.small}
         alt={image.alt_description || "Image description"}
-        onClick={openModal}
+        onClick={() => onClick(image)} // Викликаємо onClick з image як аргумент
         className={style.image}
-      />
-      <ImageModal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        image={image}
       />
     </div>
   );

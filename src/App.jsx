@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -26,7 +27,7 @@ const App = () => {
 
   const handleSearch = (searchTerm) => {
     setQuery(searchTerm);
-    setImages([]); // Очищуємо попередні результати
+    setImages([]);
     setPage(1);
   };
 
@@ -65,13 +66,16 @@ const App = () => {
   return (
     <>
       <SearchForm onSubmit={handleSearch} />
-      {error && <p>Помилка при завантаженні зображень. Спробуйте ще раз.</p>}
-      <Loader loading={loading} />
-      <ImageGallery images={images} onImageClick={handleImageClick} />
+      {error && (
+        <ErrorMessage message="Помилка при завантаженні зображень. Спробуйте ще раз." />
+      )}
+      {loading && <Loader />}
+      <ImageGallery images={images} onImageClick={handleImageClick} />{" "}
+      {/* Передаємо handleImageClick */}
       {selectedImage && (
         <ImageModal
           isOpen={!!selectedImage}
-          onClose={closeModal}
+          onRequestClose={closeModal}
           image={selectedImage}
         />
       )}
